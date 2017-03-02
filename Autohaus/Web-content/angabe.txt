@@ -1,0 +1,5 @@
+maske in php und inhalte von der db schreiben
+allgemeine inhalte auslesen
+lesen von bestimmten autos mit bestimmten eigenschaften
+sql injection
+jahreszahl überprüfen

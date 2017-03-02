@@ -1,0 +1,71 @@
+<html>
+<head>
+<script>
+function sendData(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+	var vn = document.getElementById("vn1").value;
+	var nn = document.getElementById("nn1").value;
+	var ms = document.getElementById("kn1").value;
+//	var mss = "vorname="+ vn & "nachname=" + nn & "kundennummer=" + ms;
+	xhttp.open("POST", "sendMessages.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("kundennummer=" + ms + "&" + "vorname=" + vn + "&" + "nachname=" + nn);
+//  xhttp.send("nachname=" + nn);
+//  xhttp.send("vorname=" + vn);
+
+//  xhttp.send(mss);
+//  xhttp.send("kundennummer=" + ms & "vorname=" + vn & "nachname=");
+//  xhttp.send("vorname=" + vn);
+//  xhttp.send("nachname=" + nn);
+}
+function readData() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("Kunden").innerHTML = this.responseText;
+    }
+  };
+	xhttp.open("POST", "readMessages.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send();
+}
+function deleteData(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+	var ms = document.getElementById("kn1").value;
+	xhttp.open("POST", "deleteMessages.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("kundennummer=" + ms);
+  }
+	window.onload=function(){
+	window.setInterval(readData,3000);
+	}
+	
+</script>
+</head>
+<body>
+	<form>
+	vorname <input type="text" name="text" id="vn1"></input><br>
+	nachname <input type="text" name="text" id="nn1"></input><br>
+	kundennummer <input type="int" name="int" id="kn1"></input><br>
+		   <button onclick="sendData()">Kunden erstellen</button>
+		   <button onclick="readData()">Alle Kunden im Autohaus auslesen</button>
+		   <button onclick="deleteData()">Kunde loeschen</button>
+	</form>
+  <div>
+	<p id="Kunden"></p>
+
+  </div>
+</body>
+</html>
+
+
+
+
